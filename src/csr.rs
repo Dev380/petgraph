@@ -400,6 +400,21 @@ where
         self.find_edge_pos(a, b).is_ok()
     }
 
+    /// Sets an edge weight
+    ///
+    /// **Panics** if no edge exists between `a` and `b`.
+    pub fn set_edge_weight(
+        &mut self,
+        a: NodeIndex<Ix>,
+        b: NodeIndex<Ix>,
+        new_edge: E,
+    ) {
+        let p = self
+            .find_edge_pos(a, b)
+            .expect("No edge found between the nodes.");
+            self.edges[p] = new_edge;
+    }
+
     /// Sets an edge weight if a function on the edge returning an `Option` returns Some
     ///
     /// **Panics** if no edge exists between `a` and `b`.
